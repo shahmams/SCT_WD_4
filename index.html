@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster - To-Do List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>TaskMaster</h1>
+            <div class="theme-toggle">
+                <i class="fas fa-moon"></i>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider round"></span>
+                </label>
+                <i class="fas fa-sun"></i>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <!-- Sidebar for categories -->
+            <aside class="sidebar">
+                <div class="category-list">
+                    <h3>Categories</h3>
+                    <ul id="categoryList">
+                        <li class="active" data-category="all">All Tasks</li>
+                        <li data-category="personal">Personal</li>
+                        <li data-category="work">Work</li>
+                        <li data-category="shopping">Shopping</li>
+                    </ul>
+                    <button id="addCategoryBtn">+ Add Category</button>
+                </div>
+
+                <div class="progress-container">
+                    <h3>Progress</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span id="progressText">0/0 tasks completed</span>
+                </div>
+            </aside>
+
+            <!-- Main task area -->
+            <main class="task-area">
+                <div class="task-controls">
+                    <div class="task-input">
+                        <input type="text" id="newTaskInput" placeholder="Add a new task...">
+                        <button id="addTaskBtn"><i class="fas fa-plus"></i></button>
+                    </div>
+                    <div class="task-options">
+                        <input type="date" id="taskDueDate" class="date-input">
+                        <input type="time" id="taskDueTime" class="time-input">
+                        <select id="taskCategory">
+                            <option value="personal">Personal</option>
+                            <option value="work">Work</option>
+                            <option value="shopping">Shopping</option>
+                        </select>
+                        <button id="clearCompletedBtn">Clear Completed</button>
+                    </div>
+                    <div class="filter-options">
+                        <select id="taskFilter">
+                            <option value="all">All</option>
+                            <option value="completed">Completed</option>
+                            <option value="pending">Pending</option>
+                            <option value="today">Due Today</option>
+                            <option value="overdue">Overdue</option>
+                        </select>
+                        <select id="taskSort">
+                            <option value="dueDate">Sort by Due Date</option>
+                            <option value="creationDate">Sort by Creation Date</option>
+                            <option value="category">Sort by Category</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="tasks-container">
+                    <ul id="taskList">
+                        <!-- Tasks will be added here dynamically -->
+                    </ul>
+                </div>
+            </main>
+
+            <!-- Today's events panel -->
+            <aside class="events-panel">
+                <h2>Today's Events</h2>
+                <div class="current-date">
+                    <span id="currentDay"></span>,
+                    <span id="currentDate"></span>
+                </div>
+                <div class="events-list" id="todaysEvents">
+                    <p class="no-events">No events scheduled for today</p>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Modal for editing tasks -->
+    <div class="modal" id="editModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Edit Task</h2>
+            <input type="text" id="editTaskTitle">
+            <textarea id="editTaskDescription" placeholder="Task description..."></textarea>
+            <div class="modal-options">
+                <input type="date" id="editTaskDueDate" class="date-input">
+                <input type="time" id="editTaskDueTime" class="time-input">
+                <select id="editTaskCategory"></select>
+            </div>
+            <button id="saveEditBtn">Save Changes</button>
+        </div>
+    </div>
+
+    <!-- Modal for adding categories -->
+    <div class="modal" id="categoryModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Add New Category</h2>
+            <input type="text" id="newCategoryName" placeholder="Category name">
+            <button id="saveCategoryBtn">Add Category</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+  
+</body>
+</html>
